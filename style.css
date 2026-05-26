@@ -296,3 +296,104 @@ input[type=checkbox] {
 .checkoff {
     border: 1px solid #000000;
 }
+
+/* 
+   MOBILE FORMATTING 
+   ----------------------------------------------------------------------------
+   Added solely to make the EXISTING site render well on phones and tablets.
+   Every rule below is scoped inside @media (max-width) queries, so the desktop
+   layout, all content, and all behavior are completely unchanged. Nothing above
+   this line was modified. This block only ADDS small-screen formatting.
+   */
+
+/* ---------- Tablets and phones (<= 768px) ---------- */
+@media (max-width: 768px) {
+
+    /* Wide data tables: instead of overflowing the page (cells use
+       white-space: nowrap), let each table scroll horizontally on its own.
+       The data and styling stay identical; only the container scrolls. */
+    table {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Forms laid out with inline `display:inline-block` should fill the
+       available width so labels and inputs don't get squeezed sideways. */
+    form {
+        display: block;
+        max-width: 100%;
+    }
+
+    /* Keep inputs, selects and textareas inside the screen. Fixed `size="35"`
+       fields (e.g. Address) would otherwise run off the edge. 16px font keeps
+       iOS from auto-zooming when a field is focused. */
+    input,
+    select,
+    textarea {
+        max-width: 100%;
+        box-sizing: border-box;
+        font-size: 16px;
+    }
+
+    /* Comfortable tap targets for buttons / submit inputs. */
+    .btn,
+    button,
+    input[type="submit"],
+    input[type="button"],
+    input[type="reset"] {
+        min-height: 38px;
+    }
+
+    /* Flex rows that place several forms / panels side-by-side (e.g. the
+       account pages and the login screen) should wrap and stack vertically
+       so nothing is pushed off the right edge of the screen. */
+    div[style*="display: flex"],
+    div[style*="display:flex"] {
+        flex-wrap: wrap !important;
+    }
+
+    /* Tighten oversized headings / margins a little on small screens. */
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* ---------- Login screen specifics ---------- */
+@media (max-width: 768px) {
+
+    /* The login wrapper is a full-height centered flex row holding the
+       (optional) calendar block and the login block. Let it grow naturally
+       and stack its children top-to-bottom on a phone. */
+    div[style*="85vh"] {
+        height: auto !important;
+        min-height: 80vh;
+    }
+
+    /* The login panel has a fixed left margin (75px) and a 110% scale meant
+       for a side-by-side desktop layout. Reset both so it sits centered and
+       full-width once the panels are stacked. */
+    div[style*="margin-left: 75px"] {
+        margin-left: 0 !important;
+        scale: 100% !important;
+        margin-top: 14px !important;
+    }
+}
+
+/* ---------- Small phones (<= 480px) ---------- */
+@media (max-width: 480px) {
+
+    /* A touch less padding so forms and panels use the narrow width well. */
+    fieldset {
+        padding: 6px;
+    }
+
+    form {
+        padding: 2px;
+    }
+
+    h2 {
+        font-size: 1.35rem;
+    }
+}
